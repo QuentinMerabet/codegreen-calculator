@@ -1,6 +1,7 @@
 import { useState, useEffect, useId } from "react";
 import { fetchJSON } from "../utils/fetchJSON";
 import { buildApiUrl } from "../utils/buildApiUrl";
+import Image from "next/image";
 
 export default function FormAddress(props) {
   const [address, setAddress] = useState("");
@@ -65,7 +66,10 @@ export default function FormAddress(props) {
     return (
       <>
         <p>Loading...</p>
-        <img src="https://c.tenor.com/4Nh-kwo0mSQAAAAC/batman-thinking.gif" />
+        <Image
+          src="https://c.tenor.com/4Nh-kwo0mSQAAAAC/batman-thinking.gif"
+          alt="loading"
+        />
       </>
     );
   } else {
