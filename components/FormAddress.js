@@ -16,7 +16,9 @@ export default function FormAddress(props) {
   const apiKey = "X2BBEZYNQQCBH7QM1PZ69EFRSGUE3SQBZ6";
   const maxApiResult = 10_000;
 
-  const KgCo2PerGas = 0.0001809589427;
+  const KgCo2PerGasOld = 0.0001809589427;
+  const KgCo2PerGasNew = 0.00031923;
+  const KwhPerGasNew = 0.00054615;
 
   async function submitAddress(event) {
     setIsFetching(true);
@@ -55,9 +57,11 @@ export default function FormAddress(props) {
     setCalculation(
       `Pages: ${
         txPages.length
-      } / Total TX Count: ${totalTxCount} / Total gas used: ${totalGasUsed} Gwei / Total Kg CO2: ${Math.round(
-        totalGasUsed * KgCo2PerGas
-      )}`
+      } / Total TX Count: ${totalTxCount} / Total gas used: ${totalGasUsed} Gwei / Total KgCO2: ${Math.round(
+        totalGasUsed * KgCo2PerGasOld
+      )} / Total KgCO2 New: ${Math.round(
+        totalGasUsed * KgCo2PerGasNew
+      )} / Total KWH: ${Math.round(totalGasUsed * KwhPerGasNew)}`
     );
     setIsFetching(false);
   }
@@ -66,7 +70,7 @@ export default function FormAddress(props) {
     return (
       <>
         <p>Loading...</p>
-        <Image src="/img/loader.gif" alt="loading" height={200} width={200} />
+        <Image src="/img/loader.gif" alt="loading" height={250} width={250} />
       </>
     );
   } else {
@@ -88,7 +92,7 @@ export default function FormAddress(props) {
           <button type="submit">Let's go</button>
           {error ? <span className="error">{error}</span> : ""}
         </form>
-        {calculation ? <p>{calculation}</p> : <p>No data yet</p>}
+        {calculation ? <p>{calculation}</p> : ""}
       </>
     );
   }
