@@ -66,10 +66,7 @@ export default function FormAddress(props) {
     return (
       <>
         <p>Loading...</p>
-        <Image
-          src="https://c.tenor.com/4Nh-kwo0mSQAAAAC/batman-thinking.gif"
-          alt="loading"
-        />
+        <Image src="/img/loader.gif" alt="loading" height={200} width={200} />
       </>
     );
   } else {
