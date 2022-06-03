@@ -1,16 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&display=swap");
+
+:root {
+  --main-color: #27dd6d;
+  --secondary-color: black;
+  ---color: white;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: sans-serif;
+  background-color: var(--main-color);
+  color: black;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: bolder;
+  margin-bottom: 1em;
+  font-size: 2em;
+}
+
+p {
+  margin-bottom: 1em;
 }
 
 a {
   color: inherit;
   text-decoration: none;
+  cursor: pointer;
 }
 
-* {
-  box-sizing: border-box;
+/* FORM */
+
+a.button,
+button {
+  display: block;
+  padding: 7px 10px;
+  margin: 10px 0;
+  border-radius: 8px;
+  background-color: white;
+  color: black;
+}
+
+.bg-white a.button,
+.bg-white button {
+  background-color: black;
+  color: white;
+}
+
+input {
+  border-radius: 8px;
+  padding: 7px 10px;
+  background-color: lightgrey;
 }
