@@ -21,14 +21,29 @@ export default function FormAddress(props) {
     setIsFetching(true);
     event.preventDefault(); // Prevent refresh
 
+    let txPages = []; // Storing results in pages in case their is more than maxApiResult
+    let txList = {}; // Current tx list returned by API
+    let totalTxCount = 0; // Total number of tx received
+
     // Fetching Etherscan
-    let txPages = [];
-    let txList = {};
-    let totalTxCount = 0;
-    let apiResult = await fetchJSON(buildApiUrl(address, 0));
+    let apiResult = await fetchJSON(buildApiUrl(address), 99999999);
     txList = apiResult.result;
     txPages.push(txList);
 
+    let lowestBlock;
+    while (txList.length == maxApiResult) {
+      lowestBlock = txList[txList.length - 1].blockNumber;
+      let currentPage = txPages.length + 1;
+      console.log("there's more! Fetching page", currentPage);
+      apiResult = await fetchJSON(buildApiUrl(address, lowestBlock));
+
+      txList = apiResult.result;
+      console.log("taille dernier retour:", txList.length);
+      console.log("dernier element:", txList[txList.length - 1].gasUsed);
+      txPages.push(txList);
+    }
+
+    // Counting total gas used
     let totalGasUsed = 0;
     for (let page = 0; page < txPages.length; page++) {
       for (let i = 0; i < txPages[page].length; i++) {
@@ -43,8 +58,6 @@ export default function FormAddress(props) {
         totalGasUsed * KgCo2PerGas
       )}`
     );
-    console.log("done!", txList);
-    console.log(txPages);
     setIsFetching(false);
   }
 

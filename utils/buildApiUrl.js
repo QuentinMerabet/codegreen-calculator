@@ -1,7 +1,6 @@
-export function buildApiUrl(address, count) {
+export function buildApiUrl(address, endBlock) {
   const apiKey = "X2BBEZYNQQCBH7QM1PZ69EFRSGUE3SQBZ6";
-  const maxResult = 10_000;
 
-  const url = `https://api.etherscan.io/api?module=account&action=txlist&page=${count}&offset=${maxResult}&address=${address}&startblock=0&endblock=99999999&sort=asc&apikey=${apiKey}`;
+  const url = `https://api.etherscan.io/api?module=account&action=txlist&address=${address}&startblock=0&endblock=${endBlock}&sort=desc&apikey=${apiKey}`;
   return url;
 }
