@@ -13,7 +13,7 @@ export default function Home() {
 
       <main>
         <div className="grid place-content-center h-screen">
-          <div className="p-5 bg-white">
+          <div className="p-8 rounded-xl bg-white">
             <h1>Calculator</h1>
             <p>This is a demo test for the Code Green Calculator.</p>
             <FormAddress />

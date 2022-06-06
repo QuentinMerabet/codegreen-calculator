@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function FormAddress(props) {
   const [address, setAddress] = useState("");
-  const [calculation, setCalculation] = useState();
+  const [calculation, setCalculation] = useState([]);
   const [error, setError] = useState();
   const [isFetching, setIsFetching] = useState(false);
 
@@ -85,7 +85,42 @@ export default function FormAddress(props) {
       }
     }
 
+    // Execution time for science!
+    let endingTime = Date.now();
+    console.log(
+      "Execution time:",
+      Math.round((endingTime - startingTime) / 1000),
+      "seconds"
+    );
+
+    // Printing data
+    let print = [];
+    print.push(
+      <li>
+        {txPages.length} API request(s) executed in{" "}
+        {Math.round((endingTime - startingTime) / 1000)} seconds.
+      </li>
+    );
+    print.push(<li>Total TX Count: {totalTxCount}</li>);
+    print.push(<li>Total gas used: {totalGasUsed} Gwei</li>);
+    print.push(
+      <li>
+        Total KgCO2 (carbon.fyi algo):{" "}
+        {Math.round(totalGasUsed * KgCo2PerGasOld)}
+      </li>
+    );
+    print.push(
+      <li>
+        Total KgCO2 (our algo): {Math.round(totalGasUsed * KgCo2PerGasNew)}
+      </li>
+    );
+    print.push(
+      <li>Total KWH (our algo): {Math.round(totalGasUsed * KwhPerGasNew)}</li>
+    );
+    setCalculation(print);
+
     // Printing the data
+    /*
     setCalculation(
       `Total API Request: ${
         txPages.length
@@ -95,13 +130,7 @@ export default function FormAddress(props) {
         totalGasUsed * KgCo2PerGasNew
       )} / Total KWH (C-Level algo): ${Math.round(totalGasUsed * KwhPerGasNew)}`
     );
-    // Execution time for science!
-    let endingTime = Date.now();
-    console.log(
-      "Execution time:",
-      Math.round((endingTime - startingTime) / 1000),
-      "seconds"
-    );
+    */
     setIsFetching(false);
   }
 
@@ -132,7 +161,15 @@ export default function FormAddress(props) {
           <button type="submit">Let's go</button>
           {error ? <span className="error">{error}</span> : ""}
         </form>
-        {calculation ? <p>{calculation}</p> : ""}
+
+        {calculation.length ? (
+          <div>
+            <h3>Results</h3>
+            {calculation}
+          </div>
+        ) : (
+          ""
+        )}
       </>
     );
   }
