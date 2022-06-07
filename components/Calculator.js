@@ -143,24 +143,42 @@ export default function Calculator(props) {
             </span>
           </div>
           <div className="flex m-auto p-10 gap-20 box">
-            <div className="main-results flex flex-col items-center">
+            <motion.div
+              key="ico1"
+              initial={{ y: "20", opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ type: "spring", stiffness: 100, delay: 0 }}
+              className="main-results flex flex-col items-center"
+            >
               <i className="fa-light fa-clouds"></i>
               <span className="amount">{coolNumber(resultTotalKgCO2)}</span>
               <span className="element">CO2 Emission</span>
               <span className="unit">Kg</span>
-            </div>
-            <div className="main-results flex flex-col items-center">
+            </motion.div>
+            <motion.div
+              key="ico2"
+              initial={{ y: "20", opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ type: "spring", stiffness: 100, delay: 0.2 }}
+              className="main-results flex flex-col items-center"
+            >
               <i className="fa-light fa-globe"></i>
               <span className="amount">{coolNumber(resultTx)}</span>
               <span className="element">Transactions</span>
               <span className="unit"></span>
-            </div>
-            <div className="main-results flex flex-col items-center">
+            </motion.div>
+            <motion.div
+              key="ico3"
+              initial={{ y: "20", opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ type: "spring", stiffness: 100, delay: 0.4 }}
+              className="main-results flex flex-col items-center"
+            >
               <i className="fa-light fa-fire"></i>
               <span className="amount">{coolNumber(resultTotalGas)}</span>
               <span className="element">Gas Used</span>
               <span className="unit">Gwei</span>
-            </div>
+            </motion.div>
           </div>
           <p className="text-center mt-3 mb-12">
             <a href="#" target="_blank">
