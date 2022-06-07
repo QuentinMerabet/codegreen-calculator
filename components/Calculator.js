@@ -3,6 +3,7 @@ import { fetchJSON } from "../utils/fetchJSON";
 import { buildApiUrl } from "../utils/buildApiUrl";
 import { coolNumber } from "../utils/coolNumber";
 import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Calculator(props) {
   const [address, setAddress] = useState("");
@@ -107,111 +108,129 @@ export default function Calculator(props) {
     setIsDone(true);
   }
 
-  // Render component
-  if (isFetching) {
-    return (
-      <div className="my-40 w-full flex flex-col items-center justify-center">
-        <div className="loading">
-          <Image src="/img/fist.png" alt="loading" height={45} width={45} />
-        </div>
-        <p>Processing contract's transactions...</p>
-      </div>
-    );
-  } else if (isDone) {
-    return (
-      <div>
-        <div className="text-center mb-5">
-          <h2 className="m-0">Calculated Footprint</h2>
-          <span className="address">
-            <i className="fa-solid fa-check"></i>
-            {contract}
-          </span>
-        </div>
-        <div className="flex m-auto p-10 gap-20 box">
-          <div className="main-results flex flex-col items-center">
-            <i className="fa-light fa-clouds"></i>
-            <span className="amount">{coolNumber(resultTotalKgCO2)}</span>
-            <span className="element">CO2 Emission</span>
-            <span className="unit">Kg</span>
-          </div>
-          <div className="main-results flex flex-col items-center">
-            <i className="fa-light fa-globe"></i>
-            <span className="amount">{coolNumber(resultTx)}</span>
-            <span className="element">Transactions</span>
-            <span className="unit"></span>
-          </div>
-          <div className="main-results flex flex-col items-center">
-            <i className="fa-light fa-fire"></i>
-            <span className="amount">{coolNumber(resultTotalGas)}</span>
-            <span className="element">Gas Used</span>
-            <span className="unit">Gwei</span>
-          </div>
-        </div>
-        <p className="text-center mt-3 mb-12">
-          <a href="#" target="_blank">
-            How is this calculated?
-          </a>
-        </p>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <div>
-            <h3>What does it mean?</h3>
-            <p>
-              Discover what the contract’s amount of Carbon emitted is
-              equivalent to.
-            </p>
-            <div className="example box min-w-full p-5 mb-4 flex flex-row items-center gap-3 relative">
-              <i className="fa-light fa-plane"></i>
-              <div className="flex flex-col items-left">
-                <span className="amount">x0</span>
-                <span className="element">Paris - NYC flights</span>
-              </div>
-              <a
-                className="source absolute bottom-3 right-4"
-                href="#"
-                target="_blank"
-              >
-                Read source
-              </a>
+  // Render (new)
+  return (
+    <AnimatePresence exitBeforeEnter>
+      {isFetching && !isDone && (
+        <motion.div
+          key="loader"
+          initial={{ y: "8vh", opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: "-8vh", opacity: 0 }}
+          transition={{ type: "spring", when: "afterChildren", stiffness: 50 }}
+        >
+          <div className="my-40 w-full flex flex-col items-center justify-center">
+            <div className="loading">
+              <Image src="/img/fist.png" alt="loading" height={45} width={45} />
             </div>
-            <div className="example box min-w-full p-5 mb-4 flex flex-row items-start gap-3 relative">
-              <i className="fa-light fa-home"></i>
-              <div className="flex flex-col items-left">
-                <span className="amount">0</span>
-                <span className="element">Electricity of house</span>
-              </div>
-              <a
-                className="source absolute bottom-3 right-4"
-                href="#"
-                target="_blank"
-              >
-                Read source
-              </a>
+            <p>Processing contract's transactions...</p>
+          </div>
+        </motion.div>
+      )}
+      {isDone && !isFetching && (
+        <motion.div
+          key="results"
+          initial={{ y: "8vh", opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: "-8vh", opacity: 0 }}
+          transition={{ type: "spring", stiffness: 50 }}
+        >
+          <div className="text-center mb-5">
+            <h2 className="m-0">Calculated Footprint</h2>
+            <span className="address">
+              <i className="fa-solid fa-check"></i>
+              {contract}
+            </span>
+          </div>
+          <div className="flex m-auto p-10 gap-20 box">
+            <div className="main-results flex flex-col items-center">
+              <i className="fa-light fa-clouds"></i>
+              <span className="amount">{coolNumber(resultTotalKgCO2)}</span>
+              <span className="element">CO2 Emission</span>
+              <span className="unit">Kg</span>
+            </div>
+            <div className="main-results flex flex-col items-center">
+              <i className="fa-light fa-globe"></i>
+              <span className="amount">{coolNumber(resultTx)}</span>
+              <span className="element">Transactions</span>
+              <span className="unit"></span>
+            </div>
+            <div className="main-results flex flex-col items-center">
+              <i className="fa-light fa-fire"></i>
+              <span className="amount">{coolNumber(resultTotalGas)}</span>
+              <span className="element">Gas Used</span>
+              <span className="unit">Gwei</span>
             </div>
           </div>
-          <div className="box white p-10 min-w-full">
-            <h3>
-              <i className="fa-solid fa-bee"></i> Offset Now
-            </h3>
-            <p>
-              Please contact our team of expert to find the solution that fits
-              you the best.
-            </p>
-            <a href="#" target="_blank" className="button">
-              <i className="fa-regular fa-arrow-right"></i>
-              Contact Us
+          <p className="text-center mt-3 mb-12">
+            <a href="#" target="_blank">
+              How is this calculated?
             </a>
-            <p className="mb-0">
-              You’ll soon be able to directly offset your contract’s carbon
-              footprint here.
-            </p>
+          </p>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div>
+              <h3>What does it mean?</h3>
+              <p>
+                Discover what the contract’s amount of Carbon emitted is
+                equivalent to.
+              </p>
+              <div className="example box min-w-full p-5 mb-4 flex flex-row items-center gap-3 relative">
+                <i className="fa-light fa-plane"></i>
+                <div className="flex flex-col items-left">
+                  <span className="amount">x0</span>
+                  <span className="element">Paris - NYC flights</span>
+                </div>
+                <a
+                  className="source absolute bottom-3 right-4"
+                  href="#"
+                  target="_blank"
+                >
+                  Read source
+                </a>
+              </div>
+              <div className="example box min-w-full p-5 mb-4 flex flex-row items-start gap-3 relative">
+                <i className="fa-light fa-home"></i>
+                <div className="flex flex-col items-left">
+                  <span className="amount">0</span>
+                  <span className="element">Electricity of house</span>
+                </div>
+                <a
+                  className="source absolute bottom-3 right-4"
+                  href="#"
+                  target="_blank"
+                >
+                  Read source
+                </a>
+              </div>
+            </div>
+            <div className="box white p-10 min-w-full">
+              <h3>
+                <i className="fa-solid fa-bee"></i> Offset Now
+              </h3>
+              <p>
+                Please contact our team of expert to find the solution that fits
+                you the best.
+              </p>
+              <a href="#" target="_blank" className="button">
+                <i className="fa-regular fa-arrow-right"></i>
+                Contact Us
+              </a>
+              <p className="mb-0">
+                You’ll soon be able to directly offset your contract’s carbon
+                footprint here.
+              </p>
+            </div>
           </div>
-        </div>
-      </div>
-    );
-  } else {
-    return (
-      <>
-        <div className="">
+        </motion.div>
+      )}
+      {!isFetching && !isDone && (
+        <motion.div
+          key="home"
+          initial={{ y: "-8vh", opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: "8vh", opacity: 0 }}
+          transition={{ type: "spring", delay: 0.2, stiffness: 50 }}
+        >
           <div className="tool-title flex items-center mb-5">
             <i className="fa-solid fa-calculator"></i>
             <h2>
@@ -248,8 +267,8 @@ export default function Calculator(props) {
             <br />
             Powered with <i className="fa-solid fa-heart"></i> by Heal Labs
           </p>
-        </div>
-      </>
-    );
-  }
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
 }
