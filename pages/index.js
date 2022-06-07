@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
+import Link from "next/link";
 import Calculator from "../components/Calculator";
 
 export default function Home() {
@@ -11,9 +12,11 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <nav className="p-5 flex items-center gap-5">
-        <a href="/">
-          <h1 className="logo flex-shrink-0">Code Green</h1>
-        </a>
+        <Link href="/.">
+          <a>
+            <h1 className="logo flex-shrink-0">Code Green</h1>
+          </a>
+        </Link>
         <div className="separator flex-none"></div>
         <span className="powered flex-col">Powered by Heal Labs</span>
       </nav>
