@@ -2,12 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&display=swap");
-
 :root {
-  --main-color: #27dd6d;
-  --secondary-color: black;
-  ---color: white;
+  --green: #27dd6d;
 }
 
 * {
@@ -18,9 +14,29 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: sans-serif;
-  background-color: var(--main-color);
+  min-height: 100vh;
+  overflow: auto;
+  position: relative;
+  font-family: "roboto", sans-serif;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   color: black;
+  background: url(/img/clouds.png) repeat;
+  background-size: cover;
+  background-position: left;
+  animation: cloudy 1000s linear infinite;
+}
+
+body::after {
+  content: "";
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: linear-gradient(var(--green), #67ed9b);
+  z-index: -1;
 }
 
 h1,
@@ -28,31 +44,86 @@ h2,
 h3,
 h4,
 h5 {
-  font-family: "Space Grotesk", sans-serif;
-  font-weight: bolder;
-  font-size: 2em;
+  font-family: "industry", sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 1em;
+}
+
+h1 {
+  font-size: 44px;
+}
+
+h3 {
+  font-size: 30px;
 }
 
 p {
-  margin-bottom: 1em;
+  margin: 1.2em 0;
 }
 
 a {
   color: inherit;
-  text-decoration: none;
+  text-decoration: underline;
   cursor: pointer;
+}
+
+/* NAV */
+
+nav a {
+  text-decoration: none;
+}
+
+.logo {
+  margin: 0;
+  padding: 0;
+  color: white;
+}
+
+.separator {
+  display: block;
+  width: 1px;
+  height: 30px;
+
+  background: black;
+}
+
+.powered {
+  font-weight: bold;
+}
+
+/* TOOL */
+
+.tool-title i {
+  font-size: 60px;
+  margin-right: 10px;
+}
+
+h2 {
+  margin-bottom: 6px;
+  font-size: 37px;
+  line-height: 33px;
 }
 
 /* FORM */
 
-a.button,
-button {
+a.button {
+  font-family: "industry", sans-serif;
+  width: fit-content;
+  text-transform: uppercase;
+  font-size: 18px;
+  font-weight: bold;
   display: block;
-  padding: 7px 10px;
+  padding: 10px 18px 8px 13px;
   margin: 10px 0;
-  border-radius: 8px;
-  background-color: white;
-  color: black;
+  border-radius: 10px;
+  background-color: black;
+  color: white;
+  text-decoration: none;
+}
+
+a.button i {
+  margin-right: 8px;
 }
 
 .bg-white a.button,
@@ -61,8 +132,129 @@ button {
   color: white;
 }
 
+label {
+  display: block;
+  font-weight: bold;
+  font-size: 18px;
+  margin: 0 12px;
+}
+
 input {
-  border-radius: 8px;
-  padding: 7px 10px;
-  background-color: lightgrey;
+  display: inline-block;
+  transition: all 300ms ease-out;
+  border-radius: 12px;
+  height: 53px;
+  line-height: 53px;
+  padding: 0 53px 0 18px;
+  background-color: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(12px);
+  font-family: "roboto-mono", monospace;
+  font-size: 18px;
+}
+
+input:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+input:focus-visible,
+input:focus {
+  border: none !important;
+  outline: none !important;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+button[type="submit"] {
+  display: inline-block;
+  height: 40px;
+  width: 40px;
+  background: black;
+  color: white;
+  border-radius: 10px;
+  margin-left: -47px;
+  transform: translateZ(0);
+}
+
+::placeholder {
+  color: rgba(0, 0, 0, 0.13) !important;
+}
+
+/* RESULTS */
+
+.address {
+  font-family: "roboto-mono", monospace;
+  font-size: 18px;
+  font-weight: bold;
+}
+.address i {
+  margin-right: 6px;
+}
+
+.box {
+  background-color: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  width: fit-content;
+}
+
+.box.white {
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.main-results i,
+.example i {
+  font-size: 50px;
+}
+
+.main-results .amount,
+.example .amount {
+  font-family: "industry", sans-serif;
+  font-size: 32px;
+  font-weight: 500;
+  margin: 5px 0 -8px;
+}
+
+.example .amount {
+  margin: -10px 0 -10px;
+}
+
+.main-results .element,
+.example .element {
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1em;
+  margin: 3px 0;
+}
+
+.main-results .unit {
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1em;
+}
+
+.example .source {
+  font-size: 0.8em;
+}
+
+/* ANIMS */
+
+.loading {
+  animation: loading 2500ms infinite ease-out;
+}
+
+@keyframes loading {
+  0% {
+    transform: rotateY(0deg);
+  }
+  50% {
+    transform: rotateY(180deg);
+  }
+}
+
+@keyframes cloudy {
+  0% {
+    background-position: 1000vw;
+  }
+  100% {
+    background-position: 0vw;
+  }
 }
