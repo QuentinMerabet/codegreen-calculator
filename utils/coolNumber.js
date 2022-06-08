@@ -1,11 +1,21 @@
 export function coolNumber(n) {
-  if (n < 1_000) {
-    return Math.round(n);
+  function round(n, dec = 0) {
+    return Math.round(n * 10 ** dec) / 10 ** dec;
+  }
+  if (n < 100) {
+    // Units
+    return round(n, 1);
+  } else if (n < 1_000) {
+    // Units
+    return round(n);
   } else if (n < 1_000_000) {
-    return Math.round(n / 1_000) + "K";
+    // Thousands
+    return round(n / 1_000) + "K";
   } else if (n < 1_000_000_000) {
-    return Math.round(n / 1_000_000) + "M";
+    // Millions
+    return round(n / 1_000_000, 1) + "M";
   } else {
-    return Math.round(n / 1_000_000_000) + "B";
+    // Billions
+    return round(n / 1_000_000_000, 3) + "B";
   }
 }

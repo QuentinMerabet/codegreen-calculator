@@ -147,7 +147,7 @@ export default function Calculator(props) {
               key="ico1"
               initial={{ y: "20", opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ type: "spring", stiffness: 100, delay: 0 }}
+              transition={{ type: "spring", stiffness: 120, delay: 0.1 }}
               className="main-results flex flex-col items-center"
             >
               <i className="fa-light fa-clouds"></i>
@@ -159,7 +159,7 @@ export default function Calculator(props) {
               key="ico2"
               initial={{ y: "20", opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ type: "spring", stiffness: 100, delay: 0.2 }}
+              transition={{ type: "spring", stiffness: 120, delay: 0.4 }}
               className="main-results flex flex-col items-center"
             >
               <i className="fa-light fa-globe"></i>
@@ -171,7 +171,7 @@ export default function Calculator(props) {
               key="ico3"
               initial={{ y: "20", opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ type: "spring", stiffness: 100, delay: 0.4 }}
+              transition={{ type: "spring", stiffness: 120, delay: 0.7 }}
               className="main-results flex flex-col items-center"
             >
               <i className="fa-light fa-fire"></i>
@@ -187,7 +187,7 @@ export default function Calculator(props) {
           </p>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <div>
-              <h3>What does it mean?</h3>
+              <h3>What does this all mean?</h3>
               <p>
                 Discover what the contract’s amount of Carbon emitted is
                 equivalent to.
@@ -226,8 +226,8 @@ export default function Calculator(props) {
                 <i className="fa-solid fa-bee"></i> Offset Now
               </h3>
               <p>
-                Please contact our team of expert to find the solution that fits
-                you the best.
+                Please contact our team of experts to find the solution that
+                suits you the best.
               </p>
               <a href="#" target="_blank" className="button">
                 <i className="fa-regular fa-arrow-right"></i>
@@ -246,7 +246,7 @@ export default function Calculator(props) {
           key="home"
           initial={{ y: "-8vh", opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          exit={{ y: "8vh", opacity: 0 }}
+          exit={{ y: "-8vh", opacity: 0 }}
           transition={{ type: "spring", delay: 0.2, stiffness: 50 }}
         >
           <div className="tool-title flex items-center mb-5">
@@ -256,11 +256,11 @@ export default function Calculator(props) {
             </h2>
           </div>
           <p>
-            Estimate an Ethereum based Smart Contract impact on the
-            environnement, and let us handle the Carbon offset.
+            Calculate the carbon footprint of an Ethereum contract or wallet
+            address.
           </p>
           <form onSubmit={(event) => submitAddress(event)}>
-            <label>Ethereum Contract Address</label>
+            <label>Ethereum Address</label>
             <input
               value={address}
               onInput={(e) => setAddress(e.target.value)}
@@ -281,7 +281,7 @@ export default function Calculator(props) {
             <a href="#" target="_blank">
               Learn more
             </a>{" "}
-            about our method.
+            about our methodology.
             <br />
             Powered with <i className="fa-solid fa-heart"></i> by Heal Labs
           </p>
