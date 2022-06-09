@@ -190,7 +190,7 @@ export default function Calculator(props) {
             </motion.div>
           </div>
           <p className="text-center mt-3 mb-12">
-            <a href="#" target="_blank">
+            <a href="#" target="_blank" rel="noreferrer">
               <i className="fa-regular fa-circle-question"></i> How is this
               calculated
             </a>{" "}
@@ -220,6 +220,7 @@ export default function Calculator(props) {
                   className="source absolute bottom-3 right-4"
                   href="https://eco-calculateur.dta.aviation-civile.gouv.fr/comment-ca-marche"
                   target="_blank"
+                  rel="noreferrer"
                 >
                   Read source
                 </a>
@@ -236,6 +237,7 @@ export default function Calculator(props) {
                   className="source absolute bottom-3 right-4"
                   href="https://ecotree.green/en/how-much-co2-does-a-tree-absorb?_forceLocale=en"
                   target="_blank"
+                  rel="noreferrer"
                 >
                   Read source
                 </a>
@@ -254,6 +256,7 @@ export default function Calculator(props) {
                   className="source absolute bottom-3 right-4"
                   href="https://ecotree.green/en/how-much-co2-does-a-tree-absorb?_forceLocale=en"
                   target="_blank"
+                  rel="noreferrer"
                 >
                   Read source
                 </a>
@@ -267,7 +270,7 @@ export default function Calculator(props) {
                 Please contact our team of experts to find the solution that
                 suits you the best.
               </p>
-              <a href="#" target="_blank" className="button">
+              <a href="#" target="_blank" rel="noreferrer" className="button">
                 <i className="fa-regular fa-arrow-right"></i>
                 Contact Us
               </a>
@@ -316,7 +319,7 @@ export default function Calculator(props) {
             {error ? <span className="error">{error}</span> : ""}
           </form>
           <p>
-            <a href="#" target="_blank">
+            <a href="#" target="_blank" rel="noreferrer">
               Learn more
             </a>{" "}
             about our methodology.
