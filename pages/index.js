@@ -8,15 +8,16 @@ export default function Home() {
     <div>
       <Head>
         <title>CODE GREEN - Calculator</title>
-        <meta name="description" content="Calculator" />
+        <meta
+          name="description"
+          content="Calculator powered by Heal Labs for Code Green <3"
+        />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <nav className="p-5 flex items-center gap-5">
-        <Link href="/.">
-          <a>
-            <h1 className="logo flex-shrink-0">Code Green</h1>
-          </a>
-        </Link>
+        <a href="https://codegreen.earth/">
+          <h1 className="logo flex-shrink-0">Code Green</h1>
+        </a>
         <div className="separator flex-none"></div>
         <span className="powered flex-col">Powered by Heal Labs</span>
       </nav>

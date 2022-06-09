@@ -184,6 +184,7 @@ button[type="submit"] {
   font-family: "roboto-mono", monospace;
   font-size: 18px;
   font-weight: bold;
+  overflow-wrap: break-word;
 }
 .address i {
   margin-right: 6px;
@@ -193,7 +194,6 @@ button[type="submit"] {
   background-color: rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(12px);
   border-radius: 20px;
-  width: fit-content;
 }
 
 .box.white {
@@ -219,6 +219,7 @@ button[type="submit"] {
 
 .main-results .element,
 .example .element {
+  white-space: nowrap;
   font-size: 16px;
   font-weight: bold;
   line-height: 1em;

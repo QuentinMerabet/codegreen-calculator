@@ -24,6 +24,11 @@ export default function Calculator(props) {
   // Algo
   const KgCo2PerGas = 0.00031923;
   const KwhPerGas = 0.00054615;
+  // Comparison
+  const KgCo2AbsorbedPerTree = 25;
+  const KgCo2PerPassengerForParisNYC = 500; // Source : https://eco-calculateur.dta.aviation-civile.gouv.fr/comment-ca-marche
+  const KgCo2PerFlightForParisNYC = 500 * 333;
+  const KgPerMileCar = 0.2046; // Source : https://www.nimblefins.co.uk/average-co2-emissions-car-uk
 
   async function submitAddress(event) {
     event.preventDefault(); // Prevent refresh
@@ -108,6 +113,10 @@ export default function Calculator(props) {
     setIsDone(true);
   }
 
+  function reset() {
+    setIsDone(false);
+  }
+
   // Render (new)
   return (
     <AnimatePresence exitBeforeEnter>
@@ -142,7 +151,7 @@ export default function Calculator(props) {
               {contract}
             </span>
           </div>
-          <div className="flex m-auto p-10 gap-20 box">
+          <div className="flex m-auto justify-center p-10 gap-6 md:gap-20 box md:w-min">
             <motion.div
               key="ico1"
               initial={{ y: "20", opacity: 0 }}
@@ -182,10 +191,15 @@ export default function Calculator(props) {
           </div>
           <p className="text-center mt-3 mb-12">
             <a href="#" target="_blank">
-              How is this calculated?
+              <i class="fa-regular fa-circle-question"></i> How is this
+              calculated
+            </a>{" "}
+            |{" "}
+            <a onClick={() => reset()}>
+              <i class="fa-regular fa-arrow-rotate-right"></i> Try again
             </a>
           </p>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
               <h3>What does this all mean?</h3>
               <p>
@@ -195,33 +209,57 @@ export default function Calculator(props) {
               <div className="example box min-w-full p-5 mb-4 flex flex-row items-center gap-3 relative">
                 <i className="fa-light fa-plane"></i>
                 <div className="flex flex-col items-left">
-                  <span className="amount">x0</span>
-                  <span className="element">Paris - NYC flights</span>
+                  <span className="amount">
+                    {coolNumber(
+                      resultTotalKgCO2 / KgCo2PerPassengerForParisNYC
+                    )}
+                  </span>
+                  <span className="element">Paris-NYC flights</span>
                 </div>
                 <a
                   className="source absolute bottom-3 right-4"
-                  href="#"
+                  href="https://eco-calculateur.dta.aviation-civile.gouv.fr/comment-ca-marche"
                   target="_blank"
                 >
                   Read source
                 </a>
               </div>
               <div className="example box min-w-full p-5 mb-4 flex flex-row items-start gap-3 relative">
-                <i className="fa-light fa-home"></i>
+                <i className="fa-light fa-car"></i>
                 <div className="flex flex-col items-left">
-                  <span className="amount">0</span>
-                  <span className="element">Electricity of house</span>
+                  <span className="amount">
+                    {coolNumber(resultTotalKgCO2 / KgPerMileCar)}
+                  </span>
+                  <span className="element">Miles in a new car</span>
                 </div>
                 <a
                   className="source absolute bottom-3 right-4"
-                  href="#"
+                  href="https://ecotree.green/en/how-much-co2-does-a-tree-absorb?_forceLocale=en"
+                  target="_blank"
+                >
+                  Read source
+                </a>
+              </div>
+              <div className="example box min-w-full p-5 mb-4 flex flex-row items-start gap-3 relative">
+                <i className="fa-light fa-tree-deciduous"></i>
+                <div className="flex flex-col items-left">
+                  <span className="amount">
+                    {coolNumber(resultTotalKgCO2 / KgCo2AbsorbedPerTree)}
+                  </span>
+                  <span className="element">
+                    Needed trees to absorb in a year
+                  </span>
+                </div>
+                <a
+                  className="source absolute bottom-3 right-4"
+                  href="https://ecotree.green/en/how-much-co2-does-a-tree-absorb?_forceLocale=en"
                   target="_blank"
                 >
                   Read source
                 </a>
               </div>
             </div>
-            <div className="box white p-10 min-w-full">
+            <div className="box white p-10 h-min">
               <h3>
                 <i className="fa-solid fa-bee"></i> Offset Now
               </h3>
