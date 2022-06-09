@@ -191,12 +191,12 @@ export default function Calculator(props) {
           </div>
           <p className="text-center mt-3 mb-12">
             <a href="#" target="_blank">
-              <i class="fa-regular fa-circle-question"></i> How is this
+              <i className="fa-regular fa-circle-question"></i> How is this
               calculated
             </a>{" "}
             |{" "}
             <a onClick={() => reset()}>
-              <i class="fa-regular fa-arrow-rotate-right"></i> Try again
+              <i className="fa-regular fa-arrow-rotate-right"></i> Try again
             </a>
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
