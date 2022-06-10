@@ -60,7 +60,8 @@ export default function Calculator(props) {
         apiResult.status !== "1"
       ) {
         console.log("Fetch error: ", apiResult.message);
-        setError("Fetch error: " + apiResult.message);
+        reset();
+        setError("Error: " + apiResult.message);
         return;
       }
 
@@ -115,6 +116,8 @@ export default function Calculator(props) {
 
   function reset() {
     setIsDone(false);
+    setError(false);
+    setIsFetching(false);
   }
 
   // Render (new)
@@ -304,7 +307,7 @@ export default function Calculator(props) {
             <label>Ethereum Address</label>
             <input
               value={address}
-              onInput={(e) => setAddress(e.target.value)}
+              onChange={(e) => setAddress(e.target.value)}
               type="text"
               name="address"
               placeholder="0x12345678901234567890"

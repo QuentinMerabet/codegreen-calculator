@@ -178,6 +178,11 @@ button[type="submit"] {
   color: rgba(0, 0, 0, 0.13) !important;
 }
 
+.error {
+  display: block;
+  color: red;
+}
+
 /* RESULTS */
 
 .address {
