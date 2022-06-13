@@ -68,6 +68,10 @@ a {
   cursor: pointer;
 }
 
+.number {
+  font-family: "roboto-mono", monospace;
+}
+
 /* NAV */
 
 nav a {
@@ -202,6 +206,7 @@ button[type="submit"] {
 }
 
 .box.white {
+  backdrop-filter: none;
   background-color: rgba(255, 255, 255, 1);
 }
 
@@ -239,6 +244,26 @@ button[type="submit"] {
 
 .example .source {
   font-size: 0.8em;
+}
+
+/* RADIX */
+/* Dialog */
+div[role="dialog"] {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90vw;
+  background: white;
+  padding: 2em;
+  border-radius: 20px;
+}
+
+div[role="dialog"] .close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 1em;
 }
 
 /* ANIMS */

@@ -4,6 +4,7 @@ import { buildApiUrl } from "../utils/buildApiUrl";
 import { coolNumber } from "../utils/coolNumber";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
+import * as Dialog from "@radix-ui/react-dialog";
 
 export default function Calculator(props) {
   const [address, setAddress] = useState("");
@@ -200,7 +201,49 @@ export default function Calculator(props) {
             |{" "}
             <a onClick={() => reset()}>
               <i className="fa-regular fa-arrow-rotate-right"></i> Try again
-            </a>
+            </a>{" "}
+            |{" "}
+            <Dialog.Root>
+              <Dialog.Trigger>
+                <a>
+                  <i className="fa-regular fa-cloud-arrow-down"></i> See
+                  complete report
+                </a>
+              </Dialog.Trigger>
+              <Dialog.Portal>
+                <Dialog.Overlay />
+                <Dialog.Content>
+                  <Dialog.Close className="close">
+                    <i class="fa-solid fa-xmark-large"></i>
+                  </Dialog.Close>
+                  <Dialog.Title>Full Carbon report</Dialog.Title>
+                  <Dialog.Description>
+                    <span className="address">{contract}</span>
+                    <p>
+                      This is a full report with non-rounded numbers fetched
+                      from Etherscan.
+                    </p>
+                    <ul>
+                      <li>
+                        <strong>Transactions analyzed</strong>
+                        <br />
+                        <span className="number">{resultTx}</span>
+                      </li>
+                      <li>
+                        <strong>Gwei of Gas used</strong>
+                        <br />
+                        <span className="number">{resultTotalGas}</span>
+                      </li>
+                      <li>
+                        <strong>Kg of CO2 Emission</strong>
+                        <br />
+                        <span className="number">{resultTotalKgCO2}</span>
+                      </li>
+                    </ul>
+                  </Dialog.Description>
+                </Dialog.Content>
+              </Dialog.Portal>
+            </Dialog.Root>
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
@@ -270,9 +313,14 @@ export default function Calculator(props) {
                 <i className="fa-solid fa-bee"></i> Offset Now
               </h3>
               <p>
-                Please contact our team of experts to find the solution that
-                suits you the best.
+                Don't freak out, we can help! Let's work together to make the
+                space more sustainable.
               </p>
+              <p>
+                Get in touch with our team to find the solution that suits you
+                the best.
+              </p>
+
               <a href="#" target="_blank" rel="noreferrer" className="button">
                 <i className="fa-regular fa-arrow-right"></i>
                 Contact Us
