@@ -220,8 +220,7 @@ export default function Calculator(props) {
                   <Dialog.Description>
                     <span className="address">{contract}</span>
                     <p>
-                      This is a full report with non-rounded numbers fetched
-                      from Etherscan.
+                      This is a full report with numbers that are not rounded.
                     </p>
                     <ul>
                       <li>
