@@ -29,8 +29,10 @@ export default function Calculator(props) {
   const KgCo2AbsorbedPerTree = 25;
   const KgCo2PerPassengerForParisNYC = 500; // Source : https://eco-calculateur.dta.aviation-civile.gouv.fr/comment-ca-marche
   const KgCo2PerFlightForParisNYC = 500 * 333;
-  const KgPerMileCar = 0.2046; // Source : https://www.nimblefins.co.uk/average-co2-emissions-car-uk
-
+  const KgPerMileCar = 0.2214; // Source : https://www.nimblefins.co.uk/average-co2-emissions-car-uk
+  const KgCo2PerCupOfCoffee = 0.05; // Source :
+  const KgCo2PerTShirt = 12; // Source :
+  const KgCo2PerBigMac = 2.35; // Source :
   async function submitAddress(event) {
     event.preventDefault(); // Prevent refresh
     let startingTime = Date.now();
@@ -136,7 +138,7 @@ export default function Calculator(props) {
             <div className="loading">
               <Image src="/img/fist.png" alt="loading" height={45} width={45} />
             </div>
-            <p>Processing contract's transactions...</p>
+            <p>Analyzing contract's transactions...</p>
           </div>
         </motion.div>
       )}
@@ -251,7 +253,7 @@ export default function Calculator(props) {
                 Discover what the contract’s amount of Carbon emitted is
                 equivalent to.
               </p>
-              <div className="example box min-w-full p-5 mb-4 flex flex-row items-center gap-3 relative">
+              <div className="example box justify-center md:justify-start min-w-full p-5 mb-4 flex flex-row items-center gap-3 relative">
                 <i className="fa-light fa-plane"></i>
                 <div className="flex flex-col items-left">
                   <span className="amount">
@@ -262,48 +264,80 @@ export default function Calculator(props) {
                   <span className="element">Paris-NYC flights</span>
                 </div>
                 <a
-                  className="source absolute bottom-3 right-4"
+                  className="source absolute top-3 right-4"
                   href="https://eco-calculateur.dta.aviation-civile.gouv.fr/comment-ca-marche"
                   target="_blank"
                   rel="noreferrer"
                 >
-                  Read source
+                  <i className="fa-regular fa-circle-info"></i>
                 </a>
               </div>
-              <div className="example box min-w-full p-5 mb-4 flex flex-row items-start gap-3 relative">
+              <div className="example box justify-center md:justify-start min-w-full p-5 mb-4 flex flex-row items-start gap-3 relative">
                 <i className="fa-light fa-car"></i>
                 <div className="flex flex-col items-left">
                   <span className="amount">
                     {coolNumber(resultTotalKgCO2 / KgPerMileCar)}
                   </span>
-                  <span className="element">Miles in a new car</span>
+                  <span className="element">Miles in a Car</span>
                 </div>
                 <a
-                  className="source absolute bottom-3 right-4"
-                  href="https://ecotree.green/en/how-much-co2-does-a-tree-absorb?_forceLocale=en"
+                  className="source absolute top-3 right-4"
+                  href="https://www.nimblefins.co.uk/average-co2-emissions-car-uk"
                   target="_blank"
                   rel="noreferrer"
                 >
-                  Read source
+                  <i className="fa-regular fa-circle-info"></i>
                 </a>
               </div>
-              <div className="example box min-w-full p-5 mb-4 flex flex-row items-start gap-3 relative">
-                <i className="fa-light fa-tree-deciduous"></i>
+              <div className="example box justify-center md:justify-start min-w-full p-5 mb-4 flex flex-row items-start gap-3 relative">
+                <i class="fa-light fa-burger-cheese"></i>
                 <div className="flex flex-col items-left">
                   <span className="amount">
-                    {coolNumber(resultTotalKgCO2 / KgCo2AbsorbedPerTree)}
+                    {coolNumber(resultTotalKgCO2 / KgCo2PerBigMac)}
                   </span>
-                  <span className="element">
-                    Needed trees to absorb in a year
-                  </span>
+                  <span className="element">Big Mac</span>
                 </div>
                 <a
-                  className="source absolute bottom-3 right-4"
-                  href="https://ecotree.green/en/how-much-co2-does-a-tree-absorb?_forceLocale=en"
+                  className="source absolute top-3 right-4"
+                  href="https://clevercarbon.io/carbon-footprint-of-common-items/"
                   target="_blank"
                   rel="noreferrer"
                 >
-                  Read source
+                  <i className="fa-regular fa-circle-info"></i>
+                </a>
+              </div>
+              <div className="example box justify-center md:justify-start min-w-full p-5 mb-4 flex flex-row items-start gap-3 relative">
+                <i class="fa-light fa-shirt"></i>
+                <div className="flex flex-col items-left">
+                  <span className="amount">
+                    {coolNumber(resultTotalKgCO2 / KgCo2PerTShirt)}
+                  </span>
+                  <span className="element">T-Shirt</span>
+                </div>
+                <a
+                  className="source absolute top-3 right-4"
+                  href="https://clevercarbon.io/carbon-footprint-of-common-items/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <i className="fa-regular fa-circle-info"></i>
+                </a>
+              </div>
+              <div className="example box justify-center md:justify-start min-w-full p-5 mb-4 flex flex-row items-start gap-3 relative">
+                <i class="fa-light fa-mug-hot"></i>
+                <div className="flex flex-col items-left">
+                  <span className="amount">
+                    {coolNumber(resultTotalKgCO2 / KgCo2PerCupOfCoffee)}
+                  </span>
+                  <span className="element">Cup of coffee</span>
+                </div>
+                <a
+                  className="source absolute top-3 right-4"
+                  href="https://clevercarbon.io/carbon-footprint-of-common-items/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <i className="fa-regular fa-circle-info"></i>
                 </a>
               </div>
             </div>
@@ -340,7 +374,7 @@ export default function Calculator(props) {
           exit={{ y: "-8vh", opacity: 0 }}
           transition={{ type: "spring", delay: 0.2, stiffness: 50 }}
         >
-          <div className="tool-title flex items-center mb-5">
+          <div className="tool-title flex items-start mb-5">
             <i className="fa-solid fa-calculator"></i>
             <h2>
               Carbon Footprint<br></br>Calculator

@@ -242,8 +242,9 @@ button[type="submit"] {
   line-height: 1em;
 }
 
-.example .source {
-  font-size: 0.8em;
+.example .source,
+.example .source i {
+  font-size: 1em;
 }
 
 /* RADIX */
