@@ -213,13 +213,17 @@ export default function Calculator(props) {
                 </a>
               </Dialog.Trigger>
               <Dialog.Portal>
-                <Dialog.Overlay />
-                <Dialog.Content>
-                  <Dialog.Close className="close">
-                    <i class="fa-solid fa-xmark-large"></i>
-                  </Dialog.Close>
-                  <Dialog.Title>Full Carbon report</Dialog.Title>
-                  <Dialog.Description>
+                <motion.div
+                  key="dialog"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ type: "spring", stiffness: 120 }}
+                >
+                  <Dialog.Content>
+                    <Dialog.Close className="close">
+                      <i className="fa-solid fa-xmark-large"></i>
+                    </Dialog.Close>
+                    <Dialog.Title>Full Carbon report</Dialog.Title>
                     <span className="address">{contract}</span>
                     <p>
                       This is a full report with numbers that are not rounded.
@@ -241,8 +245,8 @@ export default function Calculator(props) {
                         <span className="number">{resultTotalKgCO2}</span>
                       </li>
                     </ul>
-                  </Dialog.Description>
-                </Dialog.Content>
+                  </Dialog.Content>
+                </motion.div>
               </Dialog.Portal>
             </Dialog.Root>
           </p>
@@ -290,7 +294,7 @@ export default function Calculator(props) {
                 </a>
               </div>
               <div className="example box justify-center md:justify-start min-w-full p-5 mb-4 flex flex-row items-start gap-3 relative">
-                <i class="fa-light fa-burger-cheese"></i>
+                <i className="fa-light fa-burger-cheese"></i>
                 <div className="flex flex-col items-left">
                   <span className="amount">
                     {coolNumber(resultTotalKgCO2 / KgCo2PerBigMac)}
@@ -307,7 +311,7 @@ export default function Calculator(props) {
                 </a>
               </div>
               <div className="example box justify-center md:justify-start min-w-full p-5 mb-4 flex flex-row items-start gap-3 relative">
-                <i class="fa-light fa-shirt"></i>
+                <i className="fa-light fa-shirt"></i>
                 <div className="flex flex-col items-left">
                   <span className="amount">
                     {coolNumber(resultTotalKgCO2 / KgCo2PerTShirt)}
@@ -324,7 +328,7 @@ export default function Calculator(props) {
                 </a>
               </div>
               <div className="example box justify-center md:justify-start min-w-full p-5 mb-4 flex flex-row items-start gap-3 relative">
-                <i class="fa-light fa-mug-hot"></i>
+                <i className="fa-light fa-mug-hot"></i>
                 <div className="flex flex-col items-left">
                   <span className="amount">
                     {coolNumber(resultTotalKgCO2 / KgCo2PerCupOfCoffee)}
