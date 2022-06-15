@@ -5,6 +5,7 @@ import { coolNumber } from "../utils/coolNumber";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import * as Dialog from "@radix-ui/react-dialog";
+import Link from "next/link";
 
 export default function Calculator(props) {
   const [address, setAddress] = useState("");
@@ -23,7 +24,7 @@ export default function Calculator(props) {
   const maxApiResult = 10_000;
 
   // Algo
-  const KgCo2PerGas = 0.00031923;
+  const KgCo2PerGas = 0.0003182308;
   const KwhPerGas = 0.00054615;
   // Comparison
   const KgCo2AbsorbedPerTree = 25;
@@ -195,11 +196,13 @@ export default function Calculator(props) {
               <span className="unit">Gwei</span>
             </motion.div>
           </div>
-          <p className="text-center mt-3 mb-12">
-            <a href="#" target="_blank" rel="noreferrer">
-              <i className="fa-regular fa-circle-question"></i> How is this
-              calculated
-            </a>{" "}
+          <div className="text-center mt-3 mb-12">
+            <Link href="/methodology">
+              <a>
+                <i className="fa-regular fa-circle-question"></i> How is this
+                calculated
+              </a>
+            </Link>{" "}
             |{" "}
             <a onClick={() => reset()}>
               <i className="fa-regular fa-arrow-rotate-right"></i> Try again
@@ -231,25 +234,22 @@ export default function Calculator(props) {
                     <ul>
                       <li>
                         <strong>Transactions analyzed</strong>
-                        <br />
-                        <span className="number">{resultTx}</span>
+                        <span className="block number">{resultTx}</span>
                       </li>
                       <li>
                         <strong>Gwei of Gas used</strong>
-                        <br />
-                        <span className="number">{resultTotalGas}</span>
+                        <span className="block number">{resultTotalGas}</span>
                       </li>
                       <li>
                         <strong>Kg of CO2 Emission</strong>
-                        <br />
-                        <span className="number">{resultTotalKgCO2}</span>
+                        <span className="block number">{resultTotalKgCO2}</span>
                       </li>
                     </ul>
                   </Dialog.Content>
                 </motion.div>
               </Dialog.Portal>
             </Dialog.Root>
-          </p>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
               <h3>What does this all mean?</h3>
@@ -358,7 +358,12 @@ export default function Calculator(props) {
                 the best.
               </p>
 
-              <a href="#" target="_blank" rel="noreferrer" className="button">
+              <a
+                href="https://www.codegreen.earth/contact"
+                target="_blank"
+                rel="noreferrer"
+                className="button"
+              >
                 <i className="fa-regular fa-arrow-right"></i>
                 Contact Us
               </a>
@@ -407,9 +412,9 @@ export default function Calculator(props) {
             {error ? <span className="error">{error}</span> : ""}
           </form>
           <p>
-            <a href="#" target="_blank" rel="noreferrer">
-              Learn more
-            </a>{" "}
+            <Link href="/methodology">
+              <a>Learn more</a>
+            </Link>{" "}
             about our methodology.
             <br />
             Powered with <i className="fa-solid fa-heart"></i> by Heal Labs
