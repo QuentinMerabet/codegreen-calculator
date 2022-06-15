@@ -64,6 +64,7 @@ export default function Methodology() {
         <a
           href="https://memoakten.medium.com/analytics-the-unreasonable-ecological-cost-of-cryptoart-72f9066b90d"
           target="_blank"
+          rel="noreferrer"
         >
           Memo Akten
         </a>
