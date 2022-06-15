@@ -101,7 +101,7 @@ export default function Calculator(props) {
     setContract(address);
     setResultTx(totalTxCount); // Tx Count
     setResultTotalGas(totalGasUsed); // Total gas used in Gwei
-    setResultTotalKgCO2(Math.round(totalGasUsed * KgCo2PerGas));
+    setResultTotalKgCO2(totalGasUsed * KgCo2PerGas);
 
     // Console data
     // Execution time for science!
