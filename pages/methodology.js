@@ -45,7 +45,7 @@ export default function Methodology() {
         Unlike other calculators, we deliberately chose not to attach an
         estimated Co2/kg figure for each Ethereum transaction because we know it
         is inherently inaccurate. ‘Transactions’ vary wildly in terms of energy
-        consumption depending on the type of transaction - for example minting
+        consumption depending on the type of transaction - for example, minting
         an NFT is far more energy consuming than a simple transfer on the
         Ethereum blockchain.
         <br />
@@ -84,11 +84,10 @@ export default function Methodology() {
       </p>
       <p>This will allow us to provide an estimation based on:</p>
       <ul>
-        {" "}
         <li>
-          The old calculation for the transactions that happenned before the
+          The old calculation for the transactions that happened before the
           Block of the Merge.
-        </li>{" "}
+        </li>
         <li>
           The new calculation (approximately -99%) for the transactions that
           happened after the Block of the Merge.
