@@ -17,9 +17,6 @@ export default function Methodology() {
         <br />
         Everything is public here — each variable, wallet, transaction, and of
         course, every unit of gas consumed.
-        <br />
-        That’s why our Calculator is so incredibly precise, down to the last
-        block.
       </p>
       <p>
         Here’s the formula we use to calculate the carbon footprint of
