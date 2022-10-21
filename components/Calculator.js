@@ -26,7 +26,7 @@ export default function Calculator(props) {
 
   // Algo
   const KgCo2PerGas = 0.0003182308;
-  const KgCo2PerGasPostMerge = (0.0003182308 * (100 - 99.99)) / 100;
+  const KgCo2PerGasPostMerge = (0.0003182308 * (100 - 99.5)) / 100;
   const KwhPerGas = 0.00054615;
   // Comparison
   const KgCo2AbsorbedPerTree = 25;
