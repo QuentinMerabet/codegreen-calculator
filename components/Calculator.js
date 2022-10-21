@@ -22,9 +22,11 @@ export default function Calculator(props) {
 
   const id = useId();
   const maxApiResult = 10_000;
+  const blockMerge = 15537393;
 
   // Algo
   const KgCo2PerGas = 0.0003182308;
+  const KgCo2PerGasPostMerge = (0.0003182308 * (100 - 99.99)) / 100;
   const KwhPerGas = 0.00054615;
   // Comparison
   const KgCo2AbsorbedPerTree = 25;
@@ -89,19 +91,28 @@ export default function Calculator(props) {
     }
 
     // Counting total gas used
-    let totalGasUsed = 0;
+    let gasUsedPreMerge = 0;
+    let gasUsedPostMerge = 0;
+
     for (let page = 0; page < txPages.length; page++) {
       for (let i = 0; i < txPages[page].length; i++) {
-        totalGasUsed += parseInt(txPages[page][i].gasUsed);
+        if (parseInt(txPages[page][i].blockNumber) < blockMerge) {
+          gasUsedPreMerge += parseInt(txPages[page][i].gasUsed);
+        } else {
+          gasUsedPostMerge += parseInt(txPages[page][i].gasUsed);
+        }
         totalTxCount++;
       }
     }
+    const totalGasUsed = gasUsedPreMerge + gasUsedPostMerge;
 
     // Registering data
     setContract(address);
     setResultTx(totalTxCount); // Tx Count
     setResultTotalGas(totalGasUsed); // Total gas used in Gwei
-    setResultTotalKgCO2(totalGasUsed * KgCo2PerGas);
+    setResultTotalKgCO2(
+      gasUsedPreMerge * KgCo2PerGas + gasUsedPostMerge * KgCo2PerGasPostMerge
+    );
 
     // Console data
     // Execution time for science!
